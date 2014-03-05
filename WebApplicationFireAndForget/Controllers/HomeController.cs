@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -8,9 +9,19 @@ namespace WebApplicationFireAndForget.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public async Task<ActionResult> Index()
         {
+            await Task.Delay(100);
+
+            Task t = StartAsyncStuffAndDontWaitForIt();
+
             return View();
+        }
+
+        async Task StartAsyncStuffAndDontWaitForIt()
+        {
+            await Task.Delay(5000);
+            await Task.Delay(5000);
         }
 
         public ActionResult About()
